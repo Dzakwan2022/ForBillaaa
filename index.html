@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maaf, Meisya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff85a2, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradient 10s infinite ease-in-out;
+            text-align: center;
+            overflow: hidden;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        h1 {
+            color: #d63384;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .heart-button {
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: #ff4b5c;
+            transition: transform 0.3s;
+        }
+        .heart-button:hover {
+            transform: scale(1.3);
+        }
+        .hidden {
+            display: none;
+        }
+        .love-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .love {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 82%, 18% 100%, 0% 38%);
+            opacity: 0.6;
+            animation: float 4s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="love-bg"></div>
+
+    <!-- Audio untuk musik latar -->
+    <audio id="bg-music" loop>
+        <source src="bg.mp3" type="audio/mpeg">
+        <source src="bg.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Audio untuk musik utama -->
+    <audio id="utama">
+        <source src="utama.mp3" type="audio/mpeg">
+        <source src="utama.ogg" type="audio/ogg">
+    </audio>    
+    <div class="container active" id="slide1">
+        <h1>Mulai Petuanlangan simple ini</h1>
+        <p>baca pelan - pelan ya sayangkuu.</p>
+        <button class="heart-button" onclick="nextSlide(1)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide2">
+        <h1>Meisya, Aku Minta Maaf</h1>
+        <p>Sayang, aku sadar aku telah membuat kesalahan. Aku ingin kamu tahu bahwa aku mencintaimu lebih dari apa pun di dunia ini. Maafkan aku, aku tidak ingin kehilanganmu.</p>
+        <button class="heart-button" onclick="nextSlide(2)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide3">
+        <h1>Kamulah Cahayaku</h1>
+        <p>Tanpamu, segalanya terasa hampa. Aku ingin memperbaiki semuanya dan membuatmu tersenyum lagi. Aku tau kamu sakit perut, tapi maaf aku cuma bisa menyarankan minum air karena kita sedang jauh. Maafin aku yang kurang peka ini.</p>
+        <button class="heart-button" onclick="nextSlide(3)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide4">
+        <h1>Selamanya Denganmu</h1>
+        <p>Meisya, aku ingin kita selalu bersama. Aku akan selalu berusaha menjadi yang terbaik untukmu. Aku mencintaimu selamanya. 💖<br/>
+        kamu pasti lagi sakit banget yaa karna lagi hari pertama tapi kamu pasti bisa kan pacar aku kuattt. </p>
+        <button class="heart-button" onclick="nextSlide(4)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide5">
+        <h1>Rindu yang Tak Terbendung</h1>
+        <p>Setiap malam, aku hanya bisa memandang langit, berharap bintang-bintang mengirimkan rinduku padamu. Aku ingin berada di sisimu, membisikkan bahwa aku takkan pernah pergi darimu.</p>
+        <button class="heart-button" onclick="nextSlide(5)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide6">
+        <h1>Kamu Segalanya</h1>
+        <p>Meisya, di setiap nafas dan denyut nadiku, namamu selalu ada. Aku tak bisa membayangkan dunia tanpamu. Kamu adalah warna dalam hidupku yang membuat semuanya indah.</p>
+        <button class="heart-button" onclick="nextSlide(6)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide7">
+        <h1>Kamu Rumahku</h1>
+        <p>Dalam pelukanmu, aku menemukan kedamaian. Dalam senyummu, aku menemukan kebahagiaan. Aku ingin selalu pulang padamu, karena kamu adalah rumahku.</p>
+        <button class="heart-button" onclick="nextSlide(7)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide8">
+        <h1>Aku Berubah untuk Kamu</h1>
+        <p>Setiap kesalahan yang aku buat, aku jadikan pelajaran agar aku bisa menjadi pria yang lebih baik untukmu. Aku ingin kamu selalu bangga memiliki aku.</p>
+        <button class="heart-button" onclick="nextSlide(8)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide9">
+        <h1>Setiap Detik Bersamamu</h1>
+        <p>Waktu terasa begitu cepat berlalu saat aku bersamamu, tapi terasa sangat lambat saat aku tanpamu. Aku ingin menghabiskan selamanya denganmu, nanti kita renang ya tanggal 5 dan kita puasin untuk bercerita di tanggal 8.</p>
+        <button class="heart-button" onclick="nextSlide(9)">❤️</button>
+    </div>
+    <div class="container hidden" id="slide10">
+        <h1>Aku & Kamu, Selamanya</h1>
+        <p>Meisya, aku tak butuh dunia ini, asalkan aku punya kamu. Aku mencintaimu lebih dari yang bisa diungkapkan kata-kata. Kamu adalah takdirku.<br/>Dengar lagu ini sampai akhir yaa, ini lagu untukmu, sayangku Meisya Al Salsabilla.</p>
+        <button class="heart-button" id="music-button" onclick="toggleMusic()">🎵</button>
+
+    </div>
+
+    <script>
+        function nextSlide(currentSlide) {
+            document.getElementById('slide' + currentSlide).classList.remove('active');
+            document.getElementById('slide' + currentSlide).classList.add('hidden');
+            document.getElementById('slide' + (currentSlide + 1)).classList.remove('hidden');
+            document.getElementById('slide' + (currentSlide + 1)).classList.add('active');
+        }
+
+        function playMusic() {
+            const utamaAudio = document.getElementById('utama');
+            if (utamaAudio) {
+                utamaAudio.play().catch(error => console.log("Autoplay tidak diizinkan: ", error));
+            }
+        }
+
+        function startBgMusic() {
+    const bgMusic = document.getElementById('bg-music');
+    if (bgMusic) {
+        bgMusic.volume = 0.1; // Atur volume ke 20% (bisa sesuaikan)
+        bgMusic.play().catch(error => console.log("Autoplay tidak diizinkan: ", error));
+    }
+}
+
+        function createHearts() {
+            const loveBg = document.querySelector('.love-bg');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('love');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                loveBg.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }, 300);
+        }
+
+        function toggleMusic() {
+        const utamaAudio = document.getElementById('utama');
+        const musicButton = document.getElementById('musicButton');
+
+        if (utamaAudio.paused) {
+            utamaAudio.play().catch(error => console.log("Autoplay tidak diizinkan: ", error));
+            musicButton.textContent = '⏸';
+        } else {
+            utamaAudio.pause();
+            musicButton.textContent = '🎵';
+        }
+    }
+        createHearts();
+
+        // Memulai musik latar setelah interaksi pengguna
+        document.addEventListener("click", startBgMusic, { once: true });
+    </script>
+</body>
+</html>
